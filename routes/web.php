@@ -2,6 +2,8 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
+use app\Http\Controller\UsersController;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -16,3 +18,13 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+
+$router->get('/test', function(){
+    return "test";
+});
+
+$router->post('/users/create', "UsersController@create");
+$router->get('/users', "UsersController@read");
+$router->delete('/users/delete/{id}', "UsersController@delete");
+$router->put('/users/update/{id}', "UsersController@update");
