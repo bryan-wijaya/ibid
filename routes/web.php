@@ -24,7 +24,15 @@ $router->get('/test', function(){
     return "test";
 });
 
+//mongodb
 $router->post('/users/create', "UsersController@create");
 $router->get('/users', "UsersController@read");
 $router->delete('/users/delete/{id}', "UsersController@delete");
 $router->put('/users/update/{id}', "UsersController@update");
+
+//firebase 
+$router->post('/firebase/create', "FirebaseController@create");
+$router->get('/firebase', "FirebaseController@read");
+$router->delete('/firebase/delete/{id}', "FirebaseController@delete");
+$router->put('/firebase/update/{id}', "FirebaseController@update");
+
