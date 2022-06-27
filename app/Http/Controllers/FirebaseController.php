@@ -6,7 +6,7 @@ use Laravel\Lumen\Routing\Controller as BaseController;
 use App\Models\FirebaseUser;
 use Illuminate\Http\Request;
 use Firebase\FirebaseLib;
-use phpDocumentor\Reflection\DocBlock\Tags\Var_;
+use Illuminate\Support\Facades\Hash;
 
 class FirebaseController extends BaseController
 {
@@ -45,6 +45,7 @@ class FirebaseController extends BaseController
             $user = new FirebaseUser;
             $user->name = $request->name;
             $user->email = $request->email;
+            $user->password = Hash::make($request->password);
             $con->set(env('FIREBASE_PATH') . '/' .$id. '/', $user);
             return response()->json(["result" => "created"], 201);
         } catch (\Throwable $th) {
@@ -81,6 +82,7 @@ class FirebaseController extends BaseController
             $user = new FirebaseUser;
             $user->name = $request->name != null ? $request->name : $decode->name;
             $user->email = $request->email != null ? $request->email : $decode->email;
+            $user->password = $request->password != null ? Hash::make($request->password) : $decode->password;
             $con->update($path, $user);
             return response()->json(["result" => "updated"], 201);
         } catch (\Throwable $th) {

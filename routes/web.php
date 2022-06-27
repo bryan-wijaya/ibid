@@ -36,3 +36,12 @@ $router->get('/firebase', "FirebaseController@read");
 $router->delete('/firebase/delete/{id}', "FirebaseController@delete");
 $router->put('/firebase/update/{id}', "FirebaseController@update");
 
+//mongo with jwt
+$router->get('/jwt', "JwtController@read");
+$router->post('/jwt/create', "JwtController@create");
+$router->post('/jwt/login', "JwtController@login");
+
+$router->group(['prefix' => 'jwt', 'middleware' => 'jwt.auth'], function() use ($router) {
+    $router->put('/update/{id}', "JwtController@update");
+    $router->delete('/delete/{id}', "JwtController@delete");
+});
