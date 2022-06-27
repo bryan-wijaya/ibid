@@ -60,6 +60,7 @@ $app->singleton(
 */
 
 $app->configure('app');
+$app->configure('config/sentry.php');
 // $app->configure('database');
 
 /*
@@ -119,5 +120,9 @@ $app->register(Jenssegers\Mongodb\MongodbServiceProvider::class);
 $app->routeMiddleware([
     'jwt.auth' => App\Http\Middleware\JwtMiddleware::class,
 ]);
+
+$app->register('Sentry\Laravel\ServiceProvider');
+
+$app->register(Irazasyed\Larasupport\Providers\ArtisanServiceProvider::class);
 
 return $app;

@@ -45,3 +45,8 @@ $router->group(['prefix' => 'jwt', 'middleware' => 'jwt.auth'], function() use (
     $router->put('/update/{id}', "JwtController@update");
     $router->delete('/delete/{id}', "JwtController@delete");
 });
+
+//sentry
+$router->get('/debug-sentry', function () {
+    throw new Exception('My first Sentry error!');
+});
