@@ -50,3 +50,5 @@ $router->group(['prefix' => 'jwt', 'middleware' => 'jwt.auth'], function() use (
 $router->get('/debug-sentry', function () {
     throw new Exception('My first Sentry error!');
 });
+
+$router->get('/testskill/documentation', "UsersController@documentation");

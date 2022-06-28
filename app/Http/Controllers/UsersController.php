@@ -64,4 +64,20 @@ class UsersController extends BaseController
             return response()->json(["result" => "error"], 404);
         }
     }
+
+    /**
+     * @OA\Get(
+     *     path="/testskill/documentation",
+     *     tags={"user"},
+     *     summary="Logs out current logged in user session",
+     *     operationId="logoutUser",
+     *     @OA\Response(
+     *         response="default",
+     *         description="successful operation"
+     *     )
+     * )
+     */
+    public function documentation(){
+        return response()->json(["result" => "success" ], 201);
+    }
 }
