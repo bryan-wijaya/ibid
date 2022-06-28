@@ -6,8 +6,7 @@ use Laravel\Lumen\Routing\Controller as BaseController;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
-
+use Ixudra\Curl\Facades\Curl;
 
 class UsersController extends BaseController
 {
@@ -67,10 +66,10 @@ class UsersController extends BaseController
 
     /**
      * @OA\Get(
-     *     path="/testskill/documentation",
+     *     path="/api/documentation",
      *     tags={"user"},
-     *     summary="Logs out current logged in user session",
-     *     operationId="logoutUser",
+     *     summary="test api",
+     *     operationId="test api",
      *     @OA\Response(
      *         response="default",
      *         description="successful operation"
@@ -79,5 +78,25 @@ class UsersController extends BaseController
      */
     public function documentation(){
         return response()->json(["result" => "success" ], 201);
+    }
+
+    public function filter(){
+        $response = Curl::to('https://gist.githubusercontent.com/Loetfi/fe38a350deeebeb6a92526f6762bd719/raw/9899cf13cc58adac0a65de91642f87c63979960d/filter-data.json')
+        ->get();
+        $decode = json_decode($response);
+        if($decode == null){
+            return response()->json(["result" => "failed"], 404);
+        }
+        $bills = $decode->data->response->billdetails;
+        $ret = [];
+        foreach($bills as $bill){
+            $denom = $bill->body[0];
+            $exp = explode(":",$denom);
+            $intDenom = intval($exp[1]);
+            if($intDenom >= 100000){
+                array_push($ret,$intDenom);
+            }
+        }
+        return $ret;
     }
 }

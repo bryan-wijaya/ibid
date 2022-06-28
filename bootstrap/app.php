@@ -128,5 +128,6 @@ $app->register('Sentry\Laravel\ServiceProvider');
 $app->register(Irazasyed\Larasupport\Providers\ArtisanServiceProvider::class);
 
 $app->register(\SwaggerLume\ServiceProvider::class);
+$app->register(Ixudra\Curl\CurlServiceProvider::class);
 
 return $app;

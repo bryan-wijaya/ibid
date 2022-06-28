@@ -51,4 +51,8 @@ $router->get('/debug-sentry', function () {
     throw new Exception('My first Sentry error!');
 });
 
-$router->get('/testskill/documentation', "UsersController@documentation");
+//swagger
+$router->get('/api/documentation', "UsersController@documentation");
+
+//filter api
+$router->get('/filter', "UsersController@filter");
