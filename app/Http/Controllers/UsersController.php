@@ -10,7 +10,18 @@ use Ixudra\Curl\Facades\Curl;
 
 class UsersController extends BaseController
 {
-    //
+    /**
+     * @OA\Get(
+     *     path="/users",
+     *     tags={"users"},
+     *     summary="get all user from mongo db",
+     *     operationId="test api",
+     *     @OA\Response(
+     *         response="default",
+     *         description="successful operation"
+     *     )
+     * )
+     */
     public function read()
     {
         try {
@@ -21,6 +32,45 @@ class UsersController extends BaseController
         }
     }
 
+    /**
+     * @OA\POST(
+     *     path="/users/create",
+     *     tags={"users"},
+     *     summary="add new user to mongo db",
+     *     operationId="test api",
+     *     @OA\Response(
+     *         response="default",
+     *         description="successful operation"
+     *     ),
+     *     @OA\Parameter(
+     *          parameter="create",
+     *          in="header",
+     *          name="name",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *     @OA\Parameter(
+     *          parameter="create",
+     *          in="header",
+     *          name="email",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *     @OA\Parameter(
+     *          parameter="create",
+     *          in="header",
+     *          name="password",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      )
+     * )
+     */
     public function create(Request $request)
     {
         try {
@@ -33,8 +83,29 @@ class UsersController extends BaseController
         } catch (\Throwable $th) {
             return response()->json(["result" => "error"], 404);
         }
-    }
+    }   
 
+     /**
+     * @OA\DELETE(
+     *     path="/users/delete/{id}",
+     *     tags={"users"},
+     *     summary="delete user from mongo db",
+     *     operationId="test api",
+     *     @OA\Response(
+     *         response="default",
+     *         description="successful operation"
+     *     ),
+     *     @OA\Parameter(
+     *          parameter="delete",
+     *          in="path",
+     *          name="id",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      )
+     * )
+     */
     public function delete($id){
         try {
             $user = Users::find($id);
@@ -48,6 +119,54 @@ class UsersController extends BaseController
         }
     }
 
+    /**
+     * @OA\PUT(
+     *     path="/users/update/{id}",
+     *     tags={"users"},
+     *     summary="update existing user from mongo db",
+     *     operationId="test api",
+     *     @OA\Response(
+     *         response="default",
+     *         description="successful operation"
+     *     ),
+     *     @OA\Parameter(
+     *          parameter="create",
+     *          in="header",
+     *          name="name",
+     *          required=false,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *     @OA\Parameter(
+     *          parameter="create",
+     *          in="header",
+     *          name="email",
+     *          required=false,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *     @OA\Parameter(
+     *          parameter="create",
+     *          in="header",
+     *          name="password",
+     *          required=false,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *     @OA\Parameter(
+     *          parameter="delete",
+     *          in="path",
+     *          name="id",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      )
+     * )
+     */
     public function update($id,Request $request){
         try {
             $user = Users::find($id);
@@ -67,7 +186,7 @@ class UsersController extends BaseController
     /**
      * @OA\Get(
      *     path="/api/documentation",
-     *     tags={"user"},
+     *     tags={"test"},
      *     summary="test api",
      *     operationId="test api",
      *     @OA\Response(

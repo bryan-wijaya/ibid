@@ -1,17 +1,151 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Your super ApplicationAPI",
+        "title": "ibid",
         "version": "1.0.0"
     },
     "paths": {
-        "/testskill/documentation": {
+        "/users": {
             "get": {
                 "tags": [
-                    "user"
+                    "users"
                 ],
-                "summary": "Logs out current logged in user session",
-                "operationId": "logoutUser",
+                "summary": "get all user from mongo db",
+                "operationId": "test api",
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/users/create": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "add new user to mongo db",
+                "operationId": "test api",
+                "parameters": [
+                    {
+                        "parameter": "create",
+                        "name": "name",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "parameter": "create",
+                        "name": "email",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "parameter": "create",
+                        "name": "password",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/users/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "delete user from mongo db",
+                "operationId": "test api",
+                "parameters": [
+                    {
+                        "parameter": "delete",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/users/update/{id}": {
+            "put": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "update existing user from mongo db",
+                "operationId": "test api",
+                "parameters": [
+                    {
+                        "parameter": "create",
+                        "name": "name",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "parameter": "create",
+                        "name": "email",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "parameter": "create",
+                        "name": "password",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "parameter": "delete",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/api/documentation": {
+            "get": {
+                "tags": [
+                    "test"
+                ],
+                "summary": "test api",
+                "operationId": "test api",
                 "responses": {
                     "default": {
                         "description": "successful operation"
